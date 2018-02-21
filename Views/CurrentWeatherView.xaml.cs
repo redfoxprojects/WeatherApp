@@ -40,16 +40,12 @@ namespace WeatherApp.Views
             {
                 try
                 {
-                    string s = string.Empty;
-                    IReadOnlyCollection<HostName> names = NetworkInformation.GetHostNames();
-                    string ss = string.Empty;
-                    foreach (HostName hn in names)
-                        ss += hn.DisplayName + " ";
-                    foreach (HostName hn in names)
-                        if (hn.IPInformation != null && 
-                           (hn.Type == HostNameType.Ipv4 || hn.Type == HostNameType.Ipv6) && 
-                           !(hn.DisplayName.StartsWith("172.") || hn.DisplayName.StartsWith("192.") || hn.DisplayName.StartsWith("10.")))
-                                s = hn.DisplayName;
+                    //string s = string.Empty;
+                    //foreach (HostName hn in NetworkInformation.GetHostNames())
+                    //    if (hn.IPInformation != null && 
+                    //       (hn.Type == HostNameType.Ipv4 || hn.Type == HostNameType.Ipv6) && 
+                    //       !(hn.DisplayName.StartsWith("172.") || hn.DisplayName.StartsWith("192.") || hn.DisplayName.StartsWith("10.")))
+                    //            s = hn.DisplayName;
                     ((CurrentWeather)DataContext).GetWeather("auto:ip");
                 }
                 catch
