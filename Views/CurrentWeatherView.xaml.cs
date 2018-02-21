@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Collections.Generic;
+using Windows.Networking;
 using WeatherApp.ViewModels;
 using Windows.Devices.Geolocation;
 using Windows.Networking.Connectivity;
@@ -21,33 +23,41 @@ namespace WeatherApp.Views
         public void CurrentWeatherView_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = new CurrentWeather();
-            //IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = true;
-            //IsolatedStorageSettings.ApplicationSettings.Save();
 
-            //LoadLocation();
+            LoadLocation();
         }
 
-        //public async void LoadLocation()
-        //{
-        //    Geolocator locator = new Geolocator();
-        //    Geoposition position;
-        //    try
-        //    {
-        //        position = await locator.GetGeopositionAsync();
-        //        ((CurrentWeather)DataContext).GetWeather(position.Coordinate.Point.Position.Latitude, position.Coordinate.Point.Position.Longitude);
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        try
-        //        {
-        //            ((CurrentWeather)DataContext).GetWeather(IPAddress.Parse(NetworkInformation.GetHostNames()[0].DisplayName));
-        //        }
-        //        catch
-        //        {
+        public async void LoadLocation()
+        {
+            Geolocator locator = new Geolocator();
+            Geoposition position;
+            try
+            {
+                position = await locator.GetGeopositionAsync();
+                ((CurrentWeather)DataContext).GetWeather(position.Coordinate.Point.Position.Latitude, position.Coordinate.Point.Position.Longitude);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    string s = string.Empty;
+                    IReadOnlyCollection<HostName> names = NetworkInformation.GetHostNames();
+                    string ss = string.Empty;
+                    foreach (HostName hn in names)
+                        ss += hn.DisplayName + " ";
+                    foreach (HostName hn in names)
+                        if (hn.IPInformation != null && 
+                           (hn.Type == HostNameType.Ipv4 || hn.Type == HostNameType.Ipv6) && 
+                           !(hn.DisplayName.StartsWith("172.") || hn.DisplayName.StartsWith("192.") || hn.DisplayName.StartsWith("10.")))
+                                s = hn.DisplayName;
+                    ((CurrentWeather)DataContext).GetWeather("auto:ip");
+                }
+                catch
+                {
 
-        //        }
-        //    }
-        //}
+                }
+            }
+        }
 
         private void ZipBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {

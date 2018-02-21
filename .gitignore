@@ -259,3 +259,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/SID-{10001,MTP Volume - 65537,15634268160}/WeatherApp_1.0.0.0_Test

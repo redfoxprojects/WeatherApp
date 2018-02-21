@@ -64,25 +64,27 @@ namespace WeatherApp.ViewModels
 
         public void GetWeather(string zip)
         {
-            //SetRequest(zip);
             SetRequest(zip);
-            //request.BeginGetResponse(new AsyncCallback(SetWeather), null);
             Task<WebResponse> response = request.GetResponseAsync();
             response.Wait();
             SetWeather(response.Result);
         }
 
-        //public void GetWeather(double lat, double lon)
-        //{
-        //    SetRequest(lat.ToString() + "," + lon.ToString());
-        //    request.BeginGetResponse(new AsyncCallback(SetWeather), null);
-        //}
+        public void GetWeather(double lat, double lon)
+        {
+            SetRequest(lat.ToString() + "," + lon.ToString());
+            Task<WebResponse> response = request.GetResponseAsync();
+            response.Wait();
+            SetWeather(response.Result);
+        }
 
-        //public void GetWeather(IPAddress ip)
-        //{
-        //    SetRequest(ip.ToString());
-        //    request.BeginGetResponse(new AsyncCallback(SetWeather), null);
-        //}
+        public void GetWeather(IPAddress ip)
+        {
+            SetRequest(ip.ToString());
+            Task<WebResponse> response = request.GetResponseAsync();
+            response.Wait();
+            SetWeather(response.Result);
+        }
 
         private string Parse(string s, string name)
         {

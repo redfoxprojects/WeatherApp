@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,5 +27,6 @@
         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" FontSize="150" x:Name="TemperatureText" Text="{Binding Path=Temperature, Converter={StaticResource weatherConverter}, ConverterParameter='Temperature'}"></TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="0" x:Name="WindText" Text="{Binding Path=WindSpeed, Converter={StaticResource weatherConverter}, ConverterParameter='WindSpeed'}"></TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="1" x:Name="WindDirectionText" Text="{Binding WindDirection}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" x:Name="Location" Text="{Binding CurrentLocation}"></TextBlock>
     </Grid>
 </UserControl>
