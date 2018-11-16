@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="5904Foxoft.WeatherAppFox" Publisher="CN=69AF6D4A-2202-45ED-826A-C30498FE818B" Version="1.1.4.0" />
+  <Identity Name="5904Foxoft.WeatherAppFox" Publisher="CN=69AF6D4A-2202-45ED-826A-C30498FE818B" Version="1.1.7.0" />
   <mp:PhoneIdentity PhoneProductId="fbb8699e-2fbd-47bf-977e-e087456da74f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>WeatherAppFox</DisplayName>

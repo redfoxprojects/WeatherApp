@@ -62,6 +62,7 @@ namespace WeatherApp.Views
                 string s = ZipBox.Text;
                 ZipBox.Text = "";
                 ((CurrentWeather)DataContext).GetWeather(s);
+                pivotMain.SelectedIndex = 0;
             }
         }
     }

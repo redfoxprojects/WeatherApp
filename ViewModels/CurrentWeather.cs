@@ -56,34 +56,22 @@ namespace WeatherApp.ViewModels
             request = WebRequest.Create(string.Format(url, val));
         }
 
-        //public void GetWeather()
-        //{
-            
-        //    request.BeginGetResponse(new AsyncCallback(SetWeather), null);
-        //}
-
         public void GetWeather(string zip)
         {
             SetRequest(zip);
-            Task<WebResponse> response = request.GetResponseAsync();
-            response.Wait();
-            SetWeather(response.Result);
+            GetWeather();
         }
 
         public void GetWeather(double lat, double lon)
         {
             SetRequest(lat.ToString() + "," + lon.ToString());
-            Task<WebResponse> response = request.GetResponseAsync();
-            response.Wait();
-            SetWeather(response.Result);
+            GetWeather();
         }
 
         public void GetWeather(IPAddress ip)
         {
             SetRequest(ip.ToString());
-            Task<WebResponse> response = request.GetResponseAsync();
-            response.Wait();
-            SetWeather(response.Result);
+            GetWeather();
         }
 
         private string Parse(string s, string name)
@@ -92,6 +80,13 @@ namespace WeatherApp.ViewModels
             doc.LoadXml(s);
             IXmlNode node = doc.SelectSingleNode(name);
             return node.InnerText;
+        }
+
+        private void GetWeather()
+        {
+            Task<WebResponse> response = request.GetResponseAsync();
+            response.Wait();
+            SetWeather(response.Result);
         }
 
         public void SetWeather(IAsyncResult result)

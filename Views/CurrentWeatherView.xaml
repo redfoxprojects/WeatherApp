@@ -10,23 +10,38 @@
     <UserControl.Resources>
         <converters:WeatherConverter x:Key="weatherConverter"></converters:WeatherConverter>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="ZipBox" x:Uid="ZipBox" MaxLength="5" Grid.Row="0" Grid.ColumnSpan="2" Width="120" KeyUp="ZipBox_KeyUp"></TextBox>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="CloudsText" Text="{Binding Clouds}"></TextBlock>
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" FontSize="150" x:Name="TemperatureText" Text="{Binding Path=Temperature, Converter={StaticResource weatherConverter}, ConverterParameter='Temperature'}"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0" x:Name="WindText" Text="{Binding Path=WindSpeed, Converter={StaticResource weatherConverter}, ConverterParameter='WindSpeed'}"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="WindDirectionText" Text="{Binding WindDirection}"></TextBlock>
-        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" x:Name="Location" Text="{Binding CurrentLocation}"></TextBlock>
-    </Grid>
+    <Pivot Padding="0" Margin="0" x:Name="pivotMain"  IsTapEnabled="True">
+        <PivotItem>
+            <Grid x:Name="LayoutRoot" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="CloudsText" Text="{Binding Clouds}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" FontSize="150" x:Name="TemperatureText" Text="{Binding Path=Temperature, Converter={StaticResource weatherConverter}, ConverterParameter='Temperature'}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" x:Name="WindText" Text="{Binding Path=WindSpeed, Converter={StaticResource weatherConverter}, ConverterParameter='WindSpeed'}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="WindDirectionText" Text="{Binding WindDirection}"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.ColumnSpan="2" x:Name="Location" Text="{Binding CurrentLocation}"></TextBlock>
+            </Grid>
+        </PivotItem>
+        <PivotItem>
+            <Grid x:Name="LayoutRoot2" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Zip" Grid.Row="0"></TextBlock>
+                <TextBox x:Name="ZipBox" x:Uid="ZipBox" MaxLength="5" Grid.Row="1" Width="120" KeyUp="ZipBox_KeyUp"></TextBox>
+            </Grid>
+        </PivotItem>
+    </Pivot>
 </UserControl>
